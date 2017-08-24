@@ -1,41 +1,78 @@
 <div class="container">
-<div><p>Posts:</p>
-<ul>
-{{#each data.articles}}
+    <div>
+        <p>Posts:</p>
+        <ul>
+            {{#each data.articles}} {{#if this.saved}}
+            <div class="modal fade" id={{this.id}} role="dialog">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">{{this.title}}</h4>
+                        </div>
+                        <div class="modal-body">
+                                <div class="Notes">
+                                     {{#each this.note}} 
 
- {{#if this.saved}}
-   
+                                    <p>{{this.body}}</p>
+                                    <hr>
 
-<div class="panel panel-default">
-  <div class="panel-heading">{{this.title}}</div>
-  <div class="panel-body">
-      <div class="row">
-      <div class="col-sm-2"><img width="80" height="80" src="{{this.image}}" alt=""></div>
-      <div class="col-sm-8">{{this.link}}</div>
-      <div class="col-sm-2 offset-col-2">
+                                     {{/each}} 
+                        
+                                </div>
+                                <form action="/note/{{this.id}}" method="POST">
+                                <div class="form-group">
+                                    <label for="message-text" class="control-label">Note:</label>
+                                    <textarea class="form-control" id="message-text" name="note"></textarea>
+                                </div>
+                            
+                        </div>
+                        <div class="modal-footer">
+                        <button class="btn btn-primary" type="submit">Save Note</button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <form action="/save/{{this.id}}" method="POST">
-        <button class="btn btn-success">Add a Note</button>
-         <button class="btn btn-danger">Unsave</button>
-    </form>
-        
-          
-          </div>
-      </div>
-      
-      
-      
-      </div>
-</div>
-{{!-- <li>{{this.title}}</li>
-<li>{{this.rank}}</li>
-<li>{{this.link}}</li>
-<li>{{this.upvote}}</li> --}}
-{{/if}}
 
-{{/each}}
-</ul>
 
-</div>
+
+
+
+
+
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">{{this.title}}</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-2"><img width="80" height="80" src="{{this.image}}" alt=""></div>
+                        <div class="col-sm-8">{{this.link}}</div>
+                        <div class="col-sm-2 offset-col-2">
+
+                            <form action="/note/{{this.id}}" method="POST">
+                                <button class="btn btn-danger">Unsave</button>
+                            </form>
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#{{this.id}}">Add a Note</button>
+
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+
+            {{/if}} {{/each}}
+        </ul>
+
+
+
+    </div>
 
 </div>
