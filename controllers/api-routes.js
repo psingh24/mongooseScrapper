@@ -12,6 +12,8 @@ module.exports = function(app) {
 
 app.get("/", function(req, res) {
 
+  
+
   //  Grab every doc in the Articles array
   Article.find({}, function(error, doc) {
   //   // Log any errors
@@ -21,26 +23,26 @@ app.get("/", function(req, res) {
   //   // Or send the doc to the browser as a json object
     else {
   //     console.log(doc)
-      res.render("home")
+      res.render("home", {data: {articles: doc}})
     }
   });
 
   
 });
 
-app.get("/articles", function(req, res) {
-  // Grab every doc in the Articles array
-  Article.find({}, function(error, doc) {
-    // Log any errors
-    if (error) {
-      console.log(error);
-    }
-    // Or send the doc to the browser as a json object
-    else {
-      res.json(doc);
-    }
-  });
-});
+// app.get("/articles", function(req, res) {
+//   // Grab every doc in the Articles array
+//   Article.find({}, function(error, doc) {
+//     // Log any errors
+//     if (error) {
+//       console.log(error);
+//     }
+//     // Or send the doc to the browser as a json object
+//     else {
+//       res.json(doc);
+//     }
+//   });
+// });
 
 
     // A GET request to scrape the echojs website
@@ -81,10 +83,10 @@ app.post("/", function(req, res) {
       });
         //  console.log(result)
     });
-   
+   res.redirect("/");
   });
   // Tell the browser that we finished scraping the text
-  res.redirect("/");
+  
 });
 
 
