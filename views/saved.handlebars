@@ -1,21 +1,9 @@
 <div class="container">
-    <div class="jumbotron">Test</div>
-
-    <div><a href="/saved">Saved Articles</a></div>
-
-    <div class="row">
-        <form action="/" method="POST">
-            <p>Reddit.com/r/<input type="text" name="searchTerm"></p>
-            <button>Scrape</button>
-        </form>
-    </div>
-
-
 <div><p>Posts:</p>
 <ul>
 {{#each data.articles}}
 
- {{#unless this.saved}}
+ {{#if this.saved}}
    
 
 <div class="panel panel-default">
@@ -27,7 +15,8 @@
       <div class="col-sm-2 offset-col-2">
 
     <form action="/save/{{this.id}}" method="POST">
-        <button class="btn btn-success">Save</button>
+        <button class="btn btn-success">Add a Note</button>
+         <button class="btn btn-danger">Unsave</button>
     </form>
         
           
@@ -42,12 +31,11 @@
 <li>{{this.rank}}</li>
 <li>{{this.link}}</li>
 <li>{{this.upvote}}</li> --}}
-{{/unless}}
+{{/if}}
 
 {{/each}}
 </ul>
 
-{{!-- <div id="articles"></div> --}}
 </div>
-    
+
 </div>

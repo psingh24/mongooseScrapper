@@ -22,6 +22,16 @@ var ArticleSchema = new Schema({
     type: Number,
     required: true
   },
+  image: {
+    type: String,
+    default: '/assets/image/Reddit-Logo.jpeg',
+    required: true
+  },
+  saved: {
+    type: Boolean,
+    default: false,
+    required: true
+  },
   // This only saves one note's ObjectId, ref refers to the Note model
   note: {
     type: Schema.Types.ObjectId,
