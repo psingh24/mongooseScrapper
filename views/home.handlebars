@@ -1,25 +1,45 @@
 
 {{> navbar }}
 
+
 <div class="container">
 
-
     {{!-- <div class="jumbotron"> --}}
-        <div class="row">
-            <div class="col-md-8 col-md-offset-1 search-area">
+         <div class="row ">
+            <div class="col-md-12  col-md-offset-1 search-area">
+                <div class="text">  
                 <form action="/" method="POST">
-                <h1 class="title" >Reddit.com/r/<span><input id="search-Bar" name="searchTerm" type="text" placeholder="..subreddit"></span></h1>
-            </div>
-            <div class="col-sm-3">
+                <h1 class="title" >Reddit.com/r/<input id="search-Bar" name="searchTerm" type="text" placeholder="..subreddit"></h1>
+                </div>
                  <button class="btn btn-primary scrape-button" >Scrape</button>
                  <button class="btn btn-primary scrape-button"><a class="saved" href="/saved">Saved Articles</a></button>
-                  </form>
-            </div>
-        </div>
+                 </form>
+            </div> 
+
+         </div>
+         <div class="row text-center">
+            <div class="col-md-12">
+                 <form action="/clear" method="POST"> 
+                 <button class="btn btn-danger scrape-button" >Clear Results</button>
+                 </form> 
+                 {{!-- <button class="btn btn-primary scrape-button"><a class="saved" href="/saved">Saved Articles</a></button> --}}
+                  
+            </div> 
+        </div> 
  
 
     
 <div class="row results-area">
+
+    {{#unless data.articles}}
+            <div class="panel panel-default">
+             <div class="panel-body">
+                 <h2>Search for your favorite subreddit and let scrapeBot handle the rest!</h2>
+             </div>
+            </div>
+        {{/unless}}
+
+
     {{#each data.articles}}
     {{#unless this.saved}}
 
@@ -64,7 +84,9 @@
         {{/unless}}
         {{/each}}
 </div> 
+
 </div>
+
 
 
 

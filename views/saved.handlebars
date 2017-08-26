@@ -4,6 +4,15 @@
 <div class="container">
   
     <div class="row results-area">
+        {{#unless data.articles}}
+            <div class="panel panel-default">
+             <div class="panel-body">
+                 <h2>You have not saved any articles yet.</h2>
+             </div>
+            </div>
+        {{/unless}}
+
+
         {{#each data.articles}}
         {{#if this.saved}}
 
@@ -18,8 +27,14 @@
                         <div class="modal-body">
                                 <div class="Notes">
                                      {{#each this.note}} 
-
-                                    <p>{{this.body}}</p>
+                                    <div>
+                                        <form action="/delete/note/{{this.id}}" method="POST">
+                                            <button class="btn btn-danger delete-note">X</button>
+                                         <p>{{this.body}}</p>
+                                         </form>
+                                         
+                                    </div>
+                                   
                                     <hr>
 
                                      {{/each}} 
@@ -71,7 +86,7 @@
                      </div>
                      <div class="row">
                         <div class="col-md-12 btn-row">
-                             <form action="/note/{{this.id}}" method="POST">
+                             <form action="/unsave/{{this.id}}" method="POST">
                                 <button class="btn btn-default">Unsave</button>
                             </form>
 

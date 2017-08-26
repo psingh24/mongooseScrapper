@@ -160,4 +160,42 @@ app.post("/note/:id", function(req, res) {
 })
 
 
+app.post("/unsave/:id", function(req, res) {
+
+    Article.update({ _id: req.params.id }, { $set: { saved: false }}, function(err, data) {
+    if (err) {
+      throw err;
+    } else {
+      res.redirect("/saved")
+    }
+  });
+
+});
+
+app.post("/clear" , function(req, res) {
+
+  Article.remove({ saved: false }, function (err) {
+  if (err) {
+    throw err;
+  } else {
+      res.redirect("/")
+    }
+  
+});
+});
+
+app.post("/delete/note/:id", function(req, res) {
+  
+
+  Note.remove({ _id: req.params.id }, function (err) {
+  if (err) {
+    throw err;
+  } else {
+       res.redirect("/saved")
+    }
+  
+});
+ 
+
+})
 }
