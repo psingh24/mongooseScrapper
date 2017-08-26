@@ -31,7 +31,7 @@ app.use(express.static("public"));
 require("./controllers/api-routes.js")(app);
 
 // Database configuration with mongoose
-mongoose.connect("mongodb://localhost/nytscrapper");
+mongoose.connect("mongodb://heroku_12cn3hpj:vrbf1j0kbvmaktg6q32n99tekv@ds161483.mlab.com:61483/heroku_12cn3hpj");
 var db = mongoose.connection;
 
 // // Show any mongoose errors
@@ -156,9 +156,9 @@ app.set('view engine', 'handlebars');
 //     }
 //   });
 // });
-
+var PORT = process.env.PORT || 3000;
 
 // Listen on port 3000
-app.listen(3000, function() {
+app.listen(PORT, function() {
   console.log("App running on port 3000!");
 });
