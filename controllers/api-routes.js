@@ -44,7 +44,7 @@ app.get("/saved", function(req, res) {
       }
       // Or, send our results to the browser, which will now include the books stored in the library
       else {
-        console.log(doc[0].note[0].body)
+        // console.log(doc[0].note[0].body)
         res.render("saved", {data: {articles: doc}})
       }
     });

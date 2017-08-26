@@ -1,11 +1,14 @@
-<div><a href="/">HOme</a></div>
+{{> navbar }}
+
 
 <div class="container">
-    <div>
-        <p>Posts:</p>
-        <ul>
-            {{#each data.articles}} {{#if this.saved}}
-            <div class="modal fade" id={{this.id}} role="dialog">
+  
+    <div class="row results-area">
+        {{#each data.articles}}
+        {{#if this.saved}}
+
+     <!-- modal Area -->
+        <div class="modal fade" id={{this.id}} role="dialog">
                 <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -36,45 +39,56 @@
                     </div>
                 </div>
             </div>
+            <!-- modal Area -->
+    <!-- Panel Area -->
+    <div class="col-md-10 col-md-offset-1 test">
+        <div class="panel panel-default">
+             <div class="panel-body">
+                 <div class="col-md-2">
+                     <p>Upvotes: {{this.upvote}}</p>
+                    
+                 </div>
+                 <div class="col-md-3">
+                     <img width="80%" src="{{this.image}}" alt="">
+                </div>
+                 <div class="col-md-5 title-alignment">
+                    <div class="row title-alignment"></div>
+                     <div class="row"><p>{{this.title}}</p></div>
+                      <div class="row"></div>
+                 </div>
+                 <div class="col-md-2">
 
-
-
-
-
-
-
-
-
-
-            <div class="panel panel-default">
-                <div class="panel-heading">{{this.title}}</div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-sm-2"><img width="80" height="80" src="{{this.image}}" alt=""></div>
-                        <div class="col-sm-8">{{this.link}}</div>
-                        <div class="col-sm-2 offset-col-2">
-
-                            <form action="/note/{{this.id}}" method="POST">
-                                <button class="btn btn-danger">Unsave</button>
-                            </form>
-                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#{{this.id}}">Add a Note</button>
-
+                     <div class="row btn-row">
+                        <div class="col-md-12">
+                            <button class="btn btn-default result-btn"><a href="{{this.link}}" target="_blank">Visit Page</a></button>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-12 btn-row">
+                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#{{this.id}}">Add a Note</button>
 
                         </div>
-                    </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-12 btn-row">
+                             <form action="/note/{{this.id}}" method="POST">
+                                <button class="btn btn-default">Unsave</button>
+                            </form>
 
+                        </div>
+                     </div>
+                      
 
-
-                </div>
-            </div>
-
-
-
-            {{/if}} {{/each}}
-        </ul>
-
-
-
+                       
+                 </div>
+             </div>
+        </div>
     </div>
+
+        {{/if}}
+        {{/each}}
+         <!-- Panel Area -->
+</div> 
+</div>
 
 </div>
