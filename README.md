@@ -12,4 +12,5 @@ A web application that scrapes any subreddit you like from Reddit. You can save 
 * Mongoose
 
 
-![Alt text](assets/image/github.png?raw=true "scrapper")
+
+![Alt text](https://raw.githubusercontent.com/psingh24/mongooseScrapper/master/public/assets/image/github.png "scrapper")
